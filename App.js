@@ -1,20 +1,40 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Text } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Home from './src/pages/Home';
+import Sobre from './src/pages/Sobre';
+
+const Stack = createNativeStackNavigator();
 
 export default function App(){
     return(
-        <View style={styles.container}>
-            <Text>Sujeito Programador</Text>
-        </View>
-    );
-}
+        <NavigationContainer>
+            <Stack.Navigator>
 
-const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        justifyContent:'center',
-        alignItems:'center'
-    }
-})
+                <Stack.Screen 
+                name="Home" 
+                component={Home}
+                options={{
+                    title: 'Tela inicial',
+                    headerStyle:{
+                        backgroundColor:'#121212'
+                    },
+                    headerTintColor:'#fff',
+                    headerShown: false,
+                }}
+                />
+
+                <Stack.Screen 
+                name="Sobre" 
+                component={Sobre}
+                options={{
+                    title: 'Sobre nós'
+                }}
+                />
+
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
+}
